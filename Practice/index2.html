@@ -12,21 +12,44 @@ Phát triển một ứng dụng đơn giản với các hình tròn với nhi�
 <body>
 <canvas id="myCanvas" width="1280px" height="720px" style="border: 1px solid black"></canvas>
 <script>
-    function Circle(x, y, radius) {
+    function Circle(x, y, radius, color) {
         this.x = x;
         this.y = y;
         this.radius = radius;
+        this.color = color;
+    }
+
+    function getRandomHex() {
+        return Math.floor(Math.random() * 255);
+    }
+
+    function getRandomColor() {
+        let red = getRandomHex();
+        let green = getRandomHex();
+        let blue = getRandomHex();
+        return "rgb(" + red + "," + green + "," + blue + ")";
     }
 
     function createCircle() {
         let ctx = document.getElementById("myCanvas").getContext("2d");
-        let circle = new Circle(580, 320, 200);
+        let color = getRandomColor();
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight;
+        let radius = Math.floor(Math.random() * 50);
+        let circle = new Circle(x, y, radius, color);
         ctx.beginPath();
-        ctx.arc(circle.x, circle.y, circle.radius, 0, 2*Math.PI);
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI, circle.color);
+        ctx.fillStyle = color;
         ctx.fill();
     }
 
-    createCircle();
+    function createMultiCircle() {
+        for (let i = 0; i < 100; i++) {
+            createCircle()
+        }
+    }
+
+    createMultiCircle();
 </script>
 </body>
 </html>

@@ -1,0 +1,21 @@
+#myForm {
+    display: none;
+}
+
+#listAllStudent {
+    border: none;
+    width: 50%;
+}
+
+tr, td {
+    height: 30px;
+}
+
+tr:nth-child(even){
+    background-color: #eeeeee;
+}
+
+thead {
+    text-align: center;
+    font-weight: bold;
+}

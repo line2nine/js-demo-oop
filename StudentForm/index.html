@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h3>THÔNG TIN SINH VIÊN</h3>
+<form action="#" method="p" id="myForm">
+    <table>
+        <tr>
+            <td width="100">Họ</td>
+            <td><input type="text" name="fullname" class="addStudent" id="addStudent1"></td>
+        </tr>
+        <tr>
+            <td>Tên</td>
+            <td><input type="text" name="fullname" class="addStudent" id="addStudent2"></td>
+        </tr>
+        <tr>
+            <td>Ngày sinh</td>
+            <td><input type="date" name="DOB" class="addStudent" id="addStudent3"></td>
+        </tr>
+        <tr>
+            <td>Giới tính</td>
+            <td><input type="radio" name="sex" id="addStudent4"> Nam
+                <input type="radio" name="sex" id="addStudent5"> Nữ <br></td>
+        </tr>
+        <tr>
+            <td>Quê quán</td>
+            <td><select class="addStudent" id="addStudent6">
+                <option value="Hà Nội"> Hà Nội</option>
+                <option value="Hải Phòng"> Hải Phòng</option>
+                <option value="Nam Đinh"> Nam Định</option>
+                <option value="Bắc Ninh"> Bắc Ninh</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Sở thích</td>
+            <td><input type="checkbox" name="hobby[]" value="1" id="addStudent7"> Thể thao
+                <input type="checkbox" name="hobby[]" value="2" id="addStudent8"> Du lịch
+                <input type="checkbox" name="hobby[]" value="4" id="addStudent9"> Phim ảnh
+            </td>
+        </tr>
+        <tr>
+            <td>Ảnh thẻ</td>
+            <td><input type="file" name="avatar"></td>
+        </tr>
+
+
+        <tr>
+            <td>Tên đăng nhập</td>
+            <td><input type="text" name="username" class="addStudent" id="addStudent10"></td>
+        </tr>
+        <tr>
+            <td>Mật khẩu</td>
+            <td><input type="password" name="password"></td>
+        </tr>
+
+        <tr>
+            <td width="100">Mô tả thêm</td>
+            <td><textarea name="description">abc</textarea></td>
+        </tr>
+
+        <tr>
+            <td width="100"></td>
+            <td><input type="button" id="add" value="Cập nhập">
+                <input type="reset" value="Nhập lại">
+                <input type="button" value="Đóng" onclick="closeForm()"</td>
+        </tr>
+    </table>
+</form>
+<h3>DANH SÁCH SINH VIÊN</h3>
+<button onclick="showForm()">Thêm sinh viên</button>
+<br>
+<table id="listAllStudent">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Mã SV</th>
+        <th>Họ tên</th>
+        <th>Ngày sinh</th>
+        <th>Quê quán</th>
+        <th>Tên đăng nhập</th>
+        <th>Thao tác</th>
+    </tr>
+    </thead>
+    <tbody id="studentList">
+
+    </tbody>
+</table>
+<script src="js/my-js.js"></script>
+</body>
+</html>

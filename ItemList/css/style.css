@@ -1,0 +1,47 @@
+.itemTable {
+    width: 50%;
+}
+tr, td {
+
+    height: 50px;
+}
+
+tr:nth-child(even){
+    background-color: #eeeeee;
+}
+
+thead {
+    text-align: center;
+    font-weight: bold;
+}
+#addItem {
+    background-color: #eeeeee;
+    border: none;
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+}
+
+#name {
+    border: 1px solid black;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+}
+
+#add {
+    background-color: darkgreen;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

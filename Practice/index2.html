@@ -12,6 +12,14 @@ Phát triển một ứng dụng đơn giản với các hình tròn với nhi�
 <body>
 <canvas id="myCanvas" width="1280px" height="720px" style="border: 1px solid black"></canvas>
 <script>
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var lx = canvas.width/2;
+    var ly = canvas.height-30;
+    var radius = Math.floor(Math.random() * 50);
+    var dx = 5;
+    var dy = -5;
+
     function Circle(x, y, radius, color) {
         this.x = x;
         this.y = y;
@@ -31,25 +39,40 @@ Phát triển một ứng dụng đơn giản với các hình tròn với nhi�
     }
 
     function createCircle() {
-        let ctx = document.getElementById("myCanvas").getContext("2d");
         let color = getRandomColor();
         let x = Math.random() * window.innerWidth;
         let y = Math.random() * window.innerHeight;
         let radius = Math.floor(Math.random() * 50);
-        let circle = new Circle(x, y, radius, color);
+        let circle = new Circle(lx, ly, radius);
         ctx.beginPath();
-        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI, circle.color);
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
         ctx.fillStyle = color;
         ctx.fill();
     }
 
     function createMultiCircle() {
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 30; i++) {
             createCircle()
         }
     }
 
-    createMultiCircle();
+    function animationCircle() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        createCircle();
+
+        if (lx + dx > canvas.width - radius || lx + dx < radius) {
+            dx = -dx;
+        }
+        if (ly + dy > canvas.height - radius || ly + dy < radius) {
+            dy = -dy;
+        }
+
+        lx += dx;
+        ly += dy;
+    }
+
+    //createMultiCircle();
+    setInterval(animationCircle, 10);
 </script>
 </body>
 </html>

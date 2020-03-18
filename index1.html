@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    1/ Tạo lớp Student cho các sinh viên
+    2/ Tạo danh sách các đối tượng sinh viên
+    3/ Hiển thị danh sách sinh viên
+    4/ Sắp xếp theo chiều tăng dần của điểm trung bình
+     */
+
+    /*
+    BTVN:
+    1/Tích hợp bài thực hành trên với giao diên ở bài myThirdHml
+    2/Xây dựng các lớp cho giao diện quản lý sản phẩm
+    * */
+
+    function Student(studentID, firstName, lastName, className, mathScore, phyScore, cheScore) {
+        this.studentID = studentID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.className = className;
+        this.mathScore = mathScore;
+        this.phyScore = phyScore;
+        this.cheScore = cheScore;
+
+        this.getStudentID = function () {
+            return this.studentID;
+        };
+
+        this.getAverageScore = function () {
+            return (this.mathScore + this.phyScore + this.cheScore) / 3;
+        };
+        this.show = function () {
+            document.write("Mã sinh viên: " + this.studentID + "<br>");
+            document.write("Họ tên: " + this.lastName + " - " + this.firstName + "<br>");
+            document.write("Lớp: " + this.className + "<br>");
+            document.write("Điểm toán: " + this.mathScore + "<br>");
+            document.write("Điểm lý: " + this.phyScore + "<br>");
+            document.write("Điểm hoá: " + this.cheScore + "<br>");
+            document.write("Điểm trung bình: <b>" + this.getAverageScore() + "</b><br>");
+        }
+    }
+
+    const MAX = 10;
+
+    function StudentList() {
+        this.studentList = new Array(MAX);
+        this.initStudentList = function () {
+            for (let i = 0; i < MAX; i++) {
+                let studentID = "CG_" + i;
+                let firstName = Math.random().toString(36).substring(10);
+                let lastName = Math.random().toString(36).substring(5);
+                let className = "C0220" + Math.random().toString(36).substring(11).toUpperCase();
+                let mathScore = Math.floor(Math.random() * 10);
+                let phyScore = Math.floor(Math.random() * 10);
+                let cheScore = Math.floor(Math.random() * 10);
+
+                this.studentList[i] = new Student(studentID, firstName, lastName, className, mathScore, phyScore, cheScore);
+            }
+        };
+        this.showStudentList = function () {
+            for (let i = 0; i < MAX; i++)
+                this.studentList[i].show();
+        };
+        this.sortStudentList = function () {
+            this.studentList.sort(function (sv1, sv2) {
+                return sv1.getAverageScore() - sv2.getAverageScore();
+            })
+        }
+
+    }
+
+
+    function main() {
+        /*          let sv1 = new Student("CG_001","Van An", "Nguyen","C0220H2",10, 9, 8);
+                    let sv2 = new Student("CG_002","Thi Binh", "Tran","C0220H1",8, 7, 9);
+                    document.write("Mã sinh viên 1: "+ sv1.getStudentID()+"<>");
+                    sv1.show();
+                    sv2.show();
+          */
+        let sList = new StudentList();
+        sList.initStudentList();
+        sList.showStudentList();
+        document.write("<br>====== Sau khi sắp xếp=========<br>");
+        sList.sortStudentList();
+        sList.showStudentList();
+
+    }
+
+    main();
+
+</script>
+</body>
+</html>

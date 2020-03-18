@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--
+Xây dựng lớp Date
+Lớp MyDate gồm:
+
+Thuộc tính:
+
+day (ngày) sẽ nhận vào giá trị dạng số nguyên
+month (tháng) sẽ nhận vào giá trị dạng số nguyên
+year (năm) sẽ nhận vào giá trị dạng số nguyên
+Phương thức:
+
+Date(day, month, year) là phương thức khởi tạo để tạo đối tượng với 3 tham số.
+
+getDay(), getMonth(), getYear() là phương thức trả về ngày, tháng, năm
+
+setDay(), setMonth(), setYear() là phương thức thiết đặt lại giá trị mới cho ngày tháng năm
+-->
+<body>
+<script>
+    let myDate = function (day, month, year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+        this.getDay = function () {
+            return this.day;
+        };
+        this.getMonth = function () {
+            return this.month;
+        };
+        this.getYear = function () {
+            return this.year;
+        };
+        this.setDay = function (day) {
+            this.day = day;
+        };
+        this.setMonth = function (month) {
+            this.month = month;
+        };
+        this.setYear = function (year) {
+            this.year = year;
+        }
+    };
+
+    let date = new myDate(2, 2, 2008);
+
+    date.setDay(18);
+    date.setMonth(3);
+    date.setYear(2020);
+
+    let day = date.getDay();
+    let month = date.getMonth();
+    let year = date.getYear();
+
+
+    alert(day + "/" + month + "/" + year);
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--
+Xây dựng lớp hình tròn theo sơ đồ:
+Lớp Circle (hình tròn) gồm:
+
+Thuộc tính:
+bán kính (radius) sẽ nhận vào giá trị dạng số thực
+
+màu sắc (color) sẽ nhận vào giá trị dạng chuỗi.
+
+Phương thức:
+Circle() là phương thức khởi tạo để tạo đối tượng không tham số.
+
+getRadius() là phương thức trả về bán kính của hình tròn
+
+getArea() là phương thức trả về diện tích hình tròn theo công thức S = Math.PI * radius * radius
+-->
+<body>
+<script>
+    function Circle(radius) {
+        this.getRadius = function () {
+            return radius;
+        };
+        this.getArea = function () {
+            return (Math.PI * radius * radius);
+        }
+    }
+    let circle = new Circle(6);
+    let radius = circle.getRadius();
+    let area = circle.getArea();
+    alert("Bán kính: " + radius + "; Diện tích: " + area);
+
+
+</script>
+</body>
+</html>

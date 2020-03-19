@@ -1,8 +1,6 @@
 const MAX = 20;
 var form = "";
 
-main();
-
 function Student(orderList, studentID, firstName, lastName, dateBirth, fromCountry, userName, editStudent, delStudent) {
     this.orderList = orderList;
     this.studentID = studentID;
@@ -88,10 +86,9 @@ function StudentList() {
         let count = this.studentList.length;
         let listTableRow = document.getElementsByClassName("studentRow");
         delete listTableRow[count];
-        console.log(listTableRow);
+        //console.log(listTableRow);
     };
 }
-
 function showForm() {
     document.getElementById("myForm").style.display = "block";
 }
@@ -111,3 +108,5 @@ function main() {
         stdList.deleteStudent();
     };
 }
+
+main();

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--
+Nhập một xâu ký tự và chuẩn hóa xâu:
+- Không có ký tự trắng ở đầu và cuối xâu
+- Không có nhiều dấu cách liên tiếp nhau
+- Chỉ đầu mỗi từ được viết hoa
+-->
+<body>
+<script>
+    function getCorrectString(str) {
+        let array = [];
+        let splitStr = str.split(" ");
+        //Loại bỏ  dấu cách thừa
+        for (let i = 0; i < splitStr.length; i++) {
+            if (splitStr[i] > 0) {
+                array.push(splitStr[i]);
+            }
+        }
+        let temp = array.join(" ");
+
+        //Chuẩn hóa chữ hoa - thường
+        let tempUpper = temp.toUpperCase();
+        temp = temp.toLowerCase();
+        //Viết hoa chữ cái đầu
+
+        temp = tempUpper.charAt(0) + temp.substring(1, temp.length);
+
+        //Viết hoa các chữ cái đầu
+        for (let i = 1; i < temp.length; i++) {
+            if (temp.charAt(i) == " ") {
+                temp = temp.substring(0, i+1) + tempUpper.charAt(i + 1) + temp.substring(i + 2, temp.length);
+            }
+        }
+        return temp;
+    }
+
+    document.write(getCorrectString("      NGuyễn VĂn    AN"));
+</script>
+</body>
+</html>

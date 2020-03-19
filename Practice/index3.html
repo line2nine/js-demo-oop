@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rectangle</title>
+</head>
+<body>
+<canvas id="myRectangle" height="720px" width="1280px"></canvas>
+<script>
+    let Rectangle = function (width, height) {
+        this.width = width;
+        this.height = height;
+        this.getPerimeter = function () {
+            return this.width *2 + this.height *2
+        };
+        this.getAcreage = function () {
+            return this.width * this.height
+        };
+        this.setHeight = function () {
+            this.width = parseFloat(prompt("Nhập chiều dài:"));
+        };
+        this.setWidth = function () {
+            this.height = parseFloat(prompt("Nhập chiều rộng:"));
+        }
+    };
+
+    function createRectangle() {
+        let ctx = document.getElementById("myRectangle").getContext("2d");
+        let rectangle1 = new Rectangle();
+        rectangle1.setHeight();
+        rectangle1.setWidth();
+        ctx.beginPath();
+        ctx.rect(120,120,rectangle1.width, rectangle1.height);
+        ctx.font = "20px Arial";
+        ctx.fillText("Chu vi: " + rectangle1.getPerimeter(),50,80,);
+        ctx.fillText("Diện tích: " + rectangle1.getAcreage(),50,100,);
+        ctx.stroke();
+    }
+    createRectangle();
+</script>
+</body>
+</html>

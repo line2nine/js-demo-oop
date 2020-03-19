@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--
+1. Cho biết hôm nay là thứ mấy (bằng tiếng việt)
+-->
+<body>
+<script>
+    function getDay() {
+        const DAY = ["Chủ nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
+        let date = new Date();
+        let d = date.getDay();
+        return DAY[d];
+    }
+
+    let date1 = new Date();
+    for (let i = 0; i < 10000; i++) {
+        document.write(getDay());
+    }
+
+    let date2 = new Date();
+
+    alert("Calculate in: " + (date2.getMilliseconds() - date1.getMilliseconds()));
+</script>
+</body>
+</html>

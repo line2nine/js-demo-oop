@@ -58,7 +58,7 @@ Phát triển một ứng dụng đơn giản với các hình tròn với nhi�
 
     function animationCircle() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        createCircle();
+        createMultiCircle();
 
         if (lx + dx > canvas.width - radius || lx + dx < radius) {
             dx = -dx;

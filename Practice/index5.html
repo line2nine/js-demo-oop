@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xây dựng lớp mô tả điện thoại</title>
+</head>
+<!--
+Có một thông số về trạng thái pin tính bằng đơn vị số nguyên (tối đa 100 đv)
+Có một vùng nhớ dùng để lưu tin nhắn đang soạn thảo.
+Có một vùng nhớ dùng để lưu tin nhắn trong hộp thư đến.
+Có một vùng nhớ dùng để lưu tin nhắn đã gửi.
+Có chức năng kiểm tra trạng thái điện thoại bật hay tắt.
+Có chức năng bật và tắt điện thoại.
+Có chức năng xạc pin điện thoại.
+Có chức năng soạn tin nhắn.
+Có chức năng nhận tin nhắn từ một chiếc mobile khác.
+Có chức năng gửi tin nhắn tới một chiếc mobile khác.
+Có chức năng xem tin trong hộp thư đến.
+Có chức năng xem tin đã gửi.
+Sau mỗi lần sử dụng một chức năng, năng lượng pin sẽ giảm đi một đơn vị.
+Các chức năng không thể hoạt động nếu điện thoại chưa bật.
+-->
+<style>
+    .mobile {
+        border: 1px solid black;
+        width: 300px;
+        height: 500px;
+        float: left;
+        background-color: black;
+        color: white;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .inbox {
+        border: 1px solid black;
+        height: 180px;
+        background-color: #eeeeee;
+        color: black;
+    }
+
+    .outbox {
+        border: 1px solid black;
+        height: 180px;
+        background-color: gray;
+        color: white;
+    }
+</style>
+<body>
+<div class="mobile" id="mobile1">
+    <div class="title" id="iphone">Iphone</div>
+    <span id="battery1">Battery: 100%</span>
+    <div class="inbox" id="iphoneInbox">Inbox</div>
+    <div class="outbox" id="iphoneOutbox">Outbox</div>
+    <br>
+    <input class="msg" id="iphoneMsg" oninput="mobile1.writeMess(this.value)">
+    <button class="send" id="iphoneSendMsg" onclick="sendMess(mobile1, mobile2)">Send</button>
+    <div>
+        <input type="button" id="switchButton1" value="Turn off the phone" onclick="switchOnOff()">
+    </div>
+    <br>
+    <div>
+        <input type="button" id="charge1" value="Charge" onclick="chargeBattery()">
+    </div>
+</div>
+<div class="mobile" id="mobile2">
+    <div class="title" id="samsung">Samsung</div>
+    <span id="battery2">Battery: 100%</span>
+    <div class="inbox" id="samsungInbox">Inbox</div>
+    <div class="outbox" id="samsungOutbox">Outbox</div>
+    <br>
+    <input class="msg" id="samsungMsg" oninput="mobile2.writeMess(this.value)">
+    <button class="send" id="samsungSendMsg" onclick="sendMess(mobile2, mobile1)">Send</button>
+    <div>
+        <input type="button" id="switchButton2" value="Turn off the phone" onclick="switchOnOff()">
+    </div>
+    <br>
+    <div>
+        <input type="button" id="charge2" value="Charge" onclick="chargeBattery()">
+    </div>
+</div>
+<script>
+    class Mobile {
+        constructor(name) {
+            this.name = name;
+            this.battery = 100;
+            this.status = true;
+            this.msg = "";
+            this.inbox = [];
+            this.outbox = [];
+        }
+
+        writeMess(value) {
+            this.msg = value;
+        }
+
+        receiveMsg(name, msg) {
+            this.inbox.push(name + ":" + msg +" ");
+        }
+
+        sendMsg(mobile) {
+            mobile.receiveMsg(this.name, this.msg);
+            this.outbox.push(this.msg);
+        }
+
+        checkStatus() {
+            if (this.status === false) {
+                alert("Device is off. You can do nothing.");
+            } else {
+                alert("The phone has been turned on. You are all set.");
+            }
+        }
+
+        turnOnOff() {
+            return this.status;
+        }
+
+        decreaseBattery() {
+            return this.battery -= 1;
+        }
+
+        chargeBattery(){
+            return this.battery = 100;
+        }
+    }
+
+    let mobile1 = new Mobile("Iphone");
+    let mobile2 = new Mobile("SamSung");
+    let statusPhone = new Mobile("All");
+    let button1 = document.getElementById("switchButton1");
+    let button2 = document.getElementById("switchButton2");
+    statusPhone.checkStatus();
+
+    function chargeBattery() {
+        document.getElementById("battery1").innerHTML = "Battery: " + mobile1.chargeBattery() + "%";
+        document.getElementById("battery2").innerHTML = "Battery: " + mobile2.chargeBattery() + "%";
+    }
+
+    function switchOnOff() {
+        if (statusPhone.turnOnOff() === false && button1.value === "Turn on the phone") {
+            statusPhone.status = true;
+            button1.value = "Turn off the phone";
+            button2.value = "Turn off the phone";
+            statusPhone.checkStatus();
+        } else {
+            statusPhone.status = false;
+            button1.value = "Turn on the phone";
+            button2.value = "Turn on the phone";
+            statusPhone.checkStatus();
+        }
+    }
+
+    function sendMess(m1, m2) {
+        if (statusPhone.turnOnOff() === false) {
+            alert("Please turn on device to use those features.");
+        } else {
+            m1.sendMsg(m2);
+            document.getElementById("iphoneInbox").innerHTML = mobile1.inbox;
+            document.getElementById("iphoneOutbox").innerHTML = mobile1.outbox;
+            document.getElementById("samsungInbox").innerHTML = mobile2.inbox;
+            document.getElementById("samsungOutbox").innerHTML = mobile2.outbox;
+            document.getElementById("iphoneMsg").value = "";
+            document.getElementById("samsungMsg").value = "";
+            document.getElementById("battery1").innerHTML = "Battery: " + mobile1.decreaseBattery() + "%";
+            document.getElementById("battery2").innerHTML = "Battery: " + mobile2.decreaseBattery() + "%";
+        }
+        //console.log(statusPhone.battery);
+    }
+</script>
+</body>
+</html>

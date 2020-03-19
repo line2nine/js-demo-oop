@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature</title>
+</head>
+<body>
+<script>
+    let Temp = function (temp) {
+        this.getFahrenheit = function () {
+            return 1.8 * temp + 32
+        };
+        this.getKelvin = function () {
+            return temp + 273.15
+        }
+    };
+    let temperature = new Temp(25);
+    document.write("Độ F bằng: " + temperature.getFahrenheit() + " độ" + "<br>");
+    document.write("Độ K bằng: " + temperature.getKelvin() + " độ");
+</script>
+</body>
+</html>

@@ -13,7 +13,7 @@ function Student(orderList, studentID, firstName, lastName, dateBirth, fromCount
     this.delStudent = delStudent;
 
     this.showList = function () {
-        form += "<tr id='studentRow'>";
+        form += "<tr class='studentRow'>";
         form += "<td>";
         form += this.orderList;
         form += "</td>";
@@ -33,7 +33,7 @@ function Student(orderList, studentID, firstName, lastName, dateBirth, fromCount
         form += this.userName;
         form += "</td>";
         form += "<td>";
-        form += "<input type ='button' value='Sửa' id='edit'" + this.editStudent + ">" + " | " + "<button type ='button' id='del'>" + this.delStudent + "</button>";
+        form += `<input type ='button' value='Sửa' id='edit' ${this.editStudent}>` + " | " + `<button type ='button' id='del' onclick='delStudent(this)'>  ${this.delStudent} </button>`;
         form += "</td>";
         form += "</tr>";
 
@@ -61,7 +61,8 @@ function StudentList() {
     };
 
     this.showStudentList = function () {
-        for (let i = 0; i < MAX; i++) {
+        form = "";
+        for (let i = 0; i < this.studentList.length; i++) {
             this.studentList[i].showList();
         }
     };
@@ -70,11 +71,11 @@ function StudentList() {
         let count = this.studentList.length;
         let orderList = count + 1;
         let studentID = "CG_" + (count + 1);
-        let firstName = document.getElementById("addStudent1").value;
-        let lastName = document.getElementById("addStudent2").value;
-        let dateBirth = document.getElementById("addStudent3").value;
-        let fromCountry = document.getElementById("addStudent6").value;
-        let userName = document.getElementById("addStudent10").value;
+        let firstName = document.getElementById("addFirstName").value;
+        let lastName = document.getElementById("addLastName").value;
+        let dateBirth = document.getElementById("addDateBirth").value;
+        let fromCountry = document.getElementById("addCountry").value;
+        let userName = document.getElementById("addUsername").value;
         let editStudent = "";
         let delStudent = "Xóa";
         //console.log(this.studentList);
@@ -86,9 +87,15 @@ function StudentList() {
         let count = this.studentList.length;
         let listTableRow = document.getElementsByClassName("studentRow");
         delete listTableRow[count];
-        //console.log(listTableRow);
+        this.showStudentList();
+        console.log("c");
     };
 }
+
+function delStudent(student) {
+    student.deleteStudent();
+}
+
 function showForm() {
     document.getElementById("myForm").style.display = "block";
 }

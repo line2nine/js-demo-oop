@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--
+Phát triển ứng dụng nhỏ mô phỏng câu chuyện Adam và Eva
+Ứng dụng nhỏ mô phỏng câu chuyện Adam và Eva. Adam và Eva là những con người đầu tiên, trong vườn địa đàng có một cây táo ra những quả táo chín mọng.
+Adam và Eva lấy một quả táo và ăn, mỗi người ăn một miếng táo cho đến khi hết!
+-->
+<style>
+    .image {
+        float: left;
+        border: 1px solid black;
+        height: 600px;
+    }
+
+</style>
+<body>
+<div>
+    <h2>Click Adam OR Eva to make them eat the apple and get weight</h2>
+</div>
+<div class="image">
+    <img src="adam.jpg" onclick="eatAdam()">
+    <div id="adamInfo"></div>
+</div>
+<div class="image">
+    <img src="eva.jpg" onclick="eatEva()">
+    <div id="evaInfo"></div>
+</div>
+<script>
+    class Apple {
+        constructor() {
+            this.weight = 10;
+        }
+
+        decreaseApple() {
+            if (this.weight) {
+                this.weight--;
+            }
+        }
+
+        getWeight() {
+            return this.weight;
+        }
+    }
+
+    class Human {
+        constructor(name, gender, weight) {
+            this.name = name;
+            this.gender = gender;
+            this.weight = weight;
+        }
+
+        setGender(gender) {
+            this.gender = gender;
+        }
+
+        setSpeak() {
+            this.say = "";
+        }
+
+        eatApple(Apple) {
+            if (Apple.weight) {
+                Apple.decreaseApple();
+                this.weight++;
+            }
+        }
+
+        getName(){
+            return this.name;
+        }
+
+        setName(name){
+            this.name = name;
+        }
+
+        getWeight(){
+            return this.weight;
+        }
+
+        setWeight(weight){
+            this.weight = weight;
+        }
+    }
+
+    let apple = new Apple();
+    let adam = new Human("Adam", "Nam", 60);
+    let eva = new Human("Eva", "Nữ", 52);
+
+    function eatAdam() {
+        adam.eatApple(apple);
+        document.getElementById("adamInfo").innerHTML = adam.getName() + "<br> Cân nặng: " + adam.getWeight() +
+            "<br> Giới tính: " + adam.gender + "<br> Số táo còn: " + apple.getWeight();
+    }
+
+    function eatEva() {
+        eva.eatApple(apple);
+        document.getElementById("evaInfo").innerHTML = eva.getName() + "<br> Cân nặng: " + eva.getWeight() +
+            "<br> Giới tính: " + eva.gender + "<br> Số táo còn: " + apple.getWeight();
+    }
+</script>
+</body>
+</html>

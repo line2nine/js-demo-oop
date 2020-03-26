@@ -7,7 +7,7 @@
 </head>
 <body>
 <h3>THÔNG TIN SINH VIÊN</h3>
-<form action="#" method="p" id="myForm">
+<form action="#" id="myForm">
     <table>
         <tr>
             <td width="100">Họ</td>
@@ -23,8 +23,8 @@
         </tr>
         <tr>
             <td>Giới tính</td>
-            <td><input type="radio" name="sex" id="addStudent4"> Nam
-                <input type="radio" name="sex" id="addStudent5"> Nữ <br></td>
+            <td><input type="radio" name="gender" id="addStudentGenderM"> Nam
+                <input type="radio" name="gender" id="addStudentGenderF"> Nữ <br></td>
         </tr>
         <tr>
             <td>Quê quán</td>
@@ -37,24 +37,14 @@
         </tr>
         <tr>
             <td>Sở thích</td>
-            <td><input type="checkbox" name="hobby[]" value="1" id="addStudent7"> Thể thao
-                <input type="checkbox" name="hobby[]" value="2" id="addStudent8"> Du lịch
-                <input type="checkbox" name="hobby[]" value="4" id="addStudent9"> Phim ảnh
+            <td><input type="checkbox" name="hobby[]" value="1" id="addStudentHobbies1"> Thể thao
+                <input type="checkbox" name="hobby[]" value="2" id="addStudentHobbies2"> Du lịch
+                <input type="checkbox" name="hobby[]" value="4" id="addStudentHobbies3"> Phim ảnh
             </td>
         </tr>
         <tr>
             <td>Ảnh thẻ</td>
             <td><input type="file" name="avatar"></td>
-        </tr>
-
-
-        <tr>
-            <td>Tên đăng nhập</td>
-            <td><input type="text" name="username" class="addStudent" id="addUsername"></td>
-        </tr>
-        <tr>
-            <td>Mật khẩu</td>
-            <td><input type="password" name="password"></td>
         </tr>
 
         <tr>
@@ -81,7 +71,6 @@
         <th>Họ tên</th>
         <th>Ngày sinh</th>
         <th>Quê quán</th>
-        <th>Tên đăng nhập</th>
         <th>Thao tác</th>
     </tr>
     </thead>
